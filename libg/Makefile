@@ -1,6 +1,6 @@
 NAME = libg.a
 
-SRC = ft_init_env.c ft_draw_pixel_img \
+SRC = ft_new_window.c ft_put_pixel_img.c
 
 OBJ = $(SRC:.c=.o)
 
