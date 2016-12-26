@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/11 01:26:39 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/07 18:07:22 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/22 16:45:41 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 void	ft_putstr_fd(const char *s, int fd)
 {
 	if (s)
-		while (*s)
-			ft_putchar_fd(*s++, fd);
+		write(fd, s, ft_strlen(s));
 }

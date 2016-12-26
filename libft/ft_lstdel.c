@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_pixel_img.c                                 :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 13:49:43 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/22 02:09:40 by amerej           ###   ########.fr       */
+/*   Created: 2016/11/05 16:35:38 by aditsch           #+#    #+#             */
+/*   Updated: 2016/11/05 17:33:15 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libg.h"
+#include "libft.h"
 
-void	ft_put_pixel_img(t_env *e, void *point, int color)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	int		i;
-
-	i = ((int)point->x * 4) + ((int)point->y * e->size_line);
-	e->data[i] = color;
-	e->data[++i] = color >> 8;
-	e->data[++i] = color >> 16;
+	if (!(alst && *alst && del))
+		return ;
+	while ((*alst)->next)
+		ft_lstdel(&((*alst)->next), del);
+	del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
 }

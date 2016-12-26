@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_window.c                                    :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 12:35:12 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/22 01:57:41 by amerej           ###   ########.fr       */
+/*   Created: 2016/11/06 17:15:50 by aditsch           #+#    #+#             */
+/*   Updated: 2016/11/07 14:30:11 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libg.h"
+#include "libft.h"
 
-t_env	*ft_new_window(int size_x, int size_y, char *title)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_env	*e;
+	t_list	*ret;
+	t_list	*tmp;
+	t_list	*bgn;
 
-	if (!(e = (t_env *)malloc(sizeof(t_env))));
+	if (!lst || !f)
 		return (NULL);
-	if (!(e->mlx = mlx_init()))
+	tmp = f(lst);
+	if (!tmp || !(ret = ft_lstnew(tmp->content, tmp->content_size)))
 		return (NULL);
-	if (!(e->win = mlx_new_window(e->mlx, size_x, size_y, title)))
-		return (NULL);
-	return (e);
+	bgn = ret;
+	while (lst->next)
+	{
+		tmp = f(lst->next);
+		if (tmp && (ret->next = ft_lstnew(tmp->content, tmp->content_size)))
+		{
+			ret = ret->next;
+			lst = lst->next;
+		}
+		else
+			lst->next = NULL;
+	}
+	return (bgn);
 }

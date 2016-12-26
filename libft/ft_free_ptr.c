@@ -6,9 +6,11 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:38:03 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/16 11:47:28 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/23 04:53:12 by amerej           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_free_ptr(void *ptr)
 {

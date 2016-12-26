@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 00:58:30 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/13 18:26:44 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/11/17 10:23:35 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,10 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t n)
 {
-	size_t	i;
 	char	*ret;
 
-	i = 0;
-	ret = (char *)malloc(sizeof(*ret) * (n + 1));
-	if (ret && s)
-	{
-		while (i < n)
-		{
-			ret[i] = s[start + i];
-			i++;
-		}
-		ret[i] = '\0';
-		return (ret);
-	}
-	return (NULL);
+	if (!((ret = ft_memalloc(n + 1)) && s))
+		return (NULL);
+	ft_memcpy(ret, s + start, n);
+	return (ret);
 }

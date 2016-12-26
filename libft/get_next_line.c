@@ -6,13 +6,13 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/18 01:55:22 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/27 01:35:22 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/22 17:24:51 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_fd		*ft_manage_fd(t_fd **list, int fd)
+static t_fd		*ft_manage_fd(t_fd **list, int fd)
 {
 	while (*list && (*list)->fd != fd)
 		list = &(*list)->next;
@@ -26,7 +26,7 @@ t_fd		*ft_manage_fd(t_fd **list, int fd)
 	return (*list);
 }
 
-int			ft_read_tmp(char **line, t_fd *list)
+static int		ft_read_tmp(char **line, t_fd *list)
 {
 	char	*tmp;
 
@@ -46,7 +46,7 @@ int			ft_read_tmp(char **line, t_fd *list)
 	return (0);
 }
 
-int			ft_read_fd(char **line, t_fd *list)
+static int		ft_read_fd(char **line, t_fd *list)
 {
 	int		count;
 	char	buffer[BUFF_SIZE + 1];
@@ -71,7 +71,7 @@ int			ft_read_fd(char **line, t_fd *list)
 	return (1);
 }
 
-int			get_next_line(int const fd, char **line)
+int				get_next_line(int const fd, char **line)
 {
 	static t_fd		*list = NULL;
 	t_fd			*current_fd;

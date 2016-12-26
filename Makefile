@@ -3,7 +3,7 @@ NAME = fractol
 
 SRC_PATH = srcs
 
-SRC_NAME = main.c events.c fractals.c
+SRC_NAME = main.c events.c fractals.c check_user_input.c
 
 OBJ_PATH = objs
 
@@ -19,7 +19,7 @@ CPPFLAGS = -I$(INC_PATH)
 
 LDFLAGS = -L./libft -L./minilibx_osx -L./libg
 
-LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit -lg
+LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit -lg -lm
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
