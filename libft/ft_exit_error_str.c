@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 10:49:04 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/26 04:18:30 by amerej           ###   ########.fr       */
+/*   Updated: 2016/12/28 10:38:12 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_exit_error_str(char *str)
 {
 	ft_putendl_fd(str, 2);
-	ft_exit();
+	ft_exit_error();
 }
