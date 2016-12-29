@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:50:24 by amerej            #+#    #+#             */
-/*   Updated: 2016/12/28 13:40:03 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 12:57:48 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+t_app			*ft_new_window(int width, int height, char *title)
+{
+	t_app	*app;
+
+	if (!(app = ft_init()))
+		return (NULL);
+	if (!(app->win = mlx_new_window(app->mlx, width, height, title)))
+	{
+		ft_free_ptr(app);
+		ft_putendl_fd("ERROR >> ft_new_window >> mlx_new_window !", 2);
+		return (NULL);
+	}
+	return (app);
+}
 
 static t_app	*ft_init(void)
 {
@@ -25,21 +40,6 @@ static t_app	*ft_init(void)
 	{
 		ft_free_ptr(app);
 		ft_putendl_fd("ERROR >> ft_init >> mlx_init !", 2);
-		return (NULL);
-	}
-	return (app);
-}
-
-t_app			*ft_new_window(int width, int height, char *title)
-{
-	t_app	*app;
-
-	if (!(app = ft_init()))
-		return (NULL);
-	if (!(app->win = mlx_new_window(app->mlx, width, height, title)))
-	{
-		ft_free_ptr(app);
-		ft_putendl_fd("ERROR >> ft_new_window >> mlx_new_window !", 2);
 		return (NULL);
 	}
 	return (app);

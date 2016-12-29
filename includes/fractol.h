@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 11:46:37 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 13:08:23 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,9 @@ typedef struct		s_app
 }					t_app;
 
 t_app				*ft_new_window(int width, int height, char *title);
-
-int					ft_key_hook(int keycode, t_app *app);
-
-char				*ft_get_arg(char *argv);
-
-void				ft_put_pixel_img(t_app *app, t_point *p, int color);
-t_fractal			*ft_init_julia(void);
-unsigned int		ft_get_color(double c_index);
-void				ft_draw_img(t_app *app, t_fractal *f, double (*fun)(t_app*, t_fractal*, t_point*));
+char				*ft_get_user_input(char *argv);
 double				ft_compute_julia(t_app *app, t_fractal *f, t_point *p);
 void				ft_init_fractal(t_app *app, char *name_fractal);
-void				ft_draw(t_app *app);
+void				ft_draw_fractal(t_app *app);
+int					ft_key_hook(int keycode, t_app *app);
 #endif
