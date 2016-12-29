@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 13:03:15 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 13:33:15 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int		ft_key_hook(int keycode, t_app *app)
 		free(app);
 		exit(EXIT_SUCCESS);
 	}
-	ft_draw(app);
+	ft_draw_fractal(app);
 	return (FALSE);
 }

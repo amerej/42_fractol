@@ -6,13 +6,13 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 13:08:26 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 13:36:51 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
+static double	ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
 {
 	int		i;
 
@@ -30,4 +30,13 @@ double	ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
 	}
 	return (i + 1 - (log(2) /
 		sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2));
+}
+
+void			*ft_compute_fractal(char *name_fractal)
+{
+	void	*fun;
+
+	if (ft_strcmp(name_fractal, "julia") == 0)
+		fun = &ft_compute_julia;
+	return (fun);
 }
