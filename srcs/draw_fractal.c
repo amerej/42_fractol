@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2016/12/29 13:32:48 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 17:08:17 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@ static void				ft_put_pixel_img(t_app *app, t_point *p, int color)
 	app->data[++i] = color >> 16;
 }
 
-static unsigned int		ft_get_color(double c_index)
+int						ft_get_color(double c_index)
 {
 	t_color		c;
-	double		freq;
 
-	freq = .3;
-	c.channels[0] = (unsigned char)(sin(0.016 * c_index + 4) * 127 + 128);
+	c.channels[0] = (unsigned char)(sin(0.016 * c_index + 6) * 127 + 128);
 	c.channels[1] = (unsigned char)(sin(0.013 * c_index + 2) * 127 + 128);
-	c.channels[2] = (unsigned char)(sin(0.010 * c_index + 1) * 127 + 128);
-	c.channels[3] = 255;
+	c.channels[2] = (unsigned char)(sin(0.010 * c_index + 4) * 127 + 128);
 	return (c.number);
 }
 
 static void				ft_draw_img(t_app *app, t_fractal *f,
-							double (*fun)(t_app*, t_fractal*, t_point*))
+							int (*fun)(t_app*, t_fractal*, t_point*))
 {
 	t_point			p;
 
@@ -45,7 +42,7 @@ static void				ft_draw_img(t_app *app, t_fractal *f,
 	{
 		p.x = -1;
 		while (++p.x < WINDOW_SIZE_X)
-			ft_put_pixel_img(app, &p, ft_get_color((*fun)(app, f, &p)));
+			ft_put_pixel_img(app, &p, (*fun)(app, f, &p));
 	}
 }
 

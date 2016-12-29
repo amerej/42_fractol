@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 13:29:23 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 17:11:52 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
 
 typedef union		u_color
 {
-	unsigned int	number;
+	int				number;
 	unsigned char	channels[4];
 }					t_color;
 
 typedef struct		s_point
 {
-	int				x;
-	int				y;
+	double			x;
+	double			y;
 }					t_point;
 
 typedef struct		s_complex
@@ -48,8 +48,10 @@ typedef struct		s_fractal
 {
 	void			*fun;
 	t_complex		c;
+	t_complex		z;
 	t_complex		new;
 	t_complex		old;
+	t_point			p;
 	t_point			move;
 	double			zoom;
 	int				i_max;
@@ -74,5 +76,6 @@ char				*ft_get_user_input(char *argv);
 void				ft_init_fractal(t_app *app, char *name_fractal);
 void				*ft_compute_fractal(char *name_fractal);
 void				ft_draw_fractal(t_app *app);
+int					ft_get_color(double c_index);
 int					ft_key_hook(int keycode, t_app *app);
 #endif
