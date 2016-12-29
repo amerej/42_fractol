@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2016/12/29 17:08:17 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 20:19:18 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int						ft_get_color(double c_index)
 {
 	t_color		c;
 
-	c.channels[0] = (unsigned char)(sin(0.016 * c_index + 6) * 127 + 128);
-	c.channels[1] = (unsigned char)(sin(0.013 * c_index + 2) * 127 + 128);
-	c.channels[2] = (unsigned char)(sin(0.010 * c_index + 4) * 127 + 128);
+	c.channels[0] = (unsigned char)(sin(0.030 * c_index + 6) * 127 + 55);
+	c.channels[1] = (unsigned char)(sin(0.005 * c_index + 6) * 200 + 55);
+	c.channels[2] = (unsigned char)(sin(0.000 * c_index + 6) * 200 + 55);
 	return (c.number);
 }
 

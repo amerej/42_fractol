@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 18:12:39 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 20:02:15 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
 	if (i < f->i_max)
 		return (ft_get_color(i + 1 - (log(2) /
 			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2)));
-	return (FALSE);
+	return (0xffffff);
 }
 
 static int		ft_compute_mandelbrot(t_app *app, t_fractal *f, t_point *p)
