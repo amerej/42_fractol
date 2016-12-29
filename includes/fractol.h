@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/28 18:15:46 by aditsch          ###   ########.fr       */
+/*   Updated: 2016/12/29 11:46:37 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define WINDOW_SIZE_X 800
 # define WINDOW_SIZE_Y 600
 
-# define ITERATION_MAX 50
+# define ITERATION_MAX 300
 
 typedef union		u_color
 {
@@ -34,8 +34,8 @@ typedef union		u_color
 
 typedef struct		s_point
 {
-	double			x;
-	double			y;
+	int				x;
+	int				y;
 }					t_point;
 
 typedef struct		s_complex
@@ -46,19 +46,15 @@ typedef struct		s_complex
 
 typedef struct		s_fractal
 {
+	void			*fun;
 	t_complex		c;
-	t_complex		z;
-	t_point			p1;
-	t_point			p2;
-	double			zn;
+	t_complex		new;
+	t_complex		old;
+	t_point			move;
 	double			zoom;
-	double			tmp;
-	double			c_index;
-	int				i;
+	int				i_max;
 	int				w;
 	int				h;
-	int				i_max;
-	void			*function;
 }					t_fractal;
 
 typedef struct		s_app
