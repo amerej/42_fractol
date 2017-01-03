@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 02:05:20 by amerej            #+#    #+#             */
-/*   Updated: 2016/12/22 02:09:15 by amerej           ###   ########.fr       */
+/*   Updated: 2017/01/03 16:33:36 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define KEYCODE_OSX_H
 
 # define KEY_ESC 53
+
+# define PTR_MOTION_MASK (1L<<6)
+# define MOTION_NOTIFY 6
 
 # define KEY_MOUSE_CLIC_L 1
 # define KEY_MOUSE_CLIC_R 2

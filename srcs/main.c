@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:09:17 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 15:03:30 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/03 17:23:20 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int		main(int argc, char *argv[])
 	if (!(app = ft_new_window(WINDOW_SIZE_X, WINDOW_SIZE_Y, "Fractol")))
 		ft_exit_error();
 	ft_init_fractal(app, name_fractal);
-	mlx_expose_hook(app->win, ft_expose_hook, app);
+	mlx_hook(app->win, MOTION_NOTIFY, PTR_MOTION_MASK, ft_motion_hook, app);
 	mlx_key_hook(app->win, ft_key_hook, app);
+	mlx_mouse_hook(app->win, ft_mouse_hook, app);
+	mlx_expose_hook(app->win, ft_expose_hook, app);
 	mlx_loop(app->mlx);
 	return (FALSE);
 }

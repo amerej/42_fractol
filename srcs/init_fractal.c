@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:49:06 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 18:17:14 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/03 17:37:32 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_fractal	*ft_init_julia(void)
 	f->i_max = ITERATION_MAX;
 	f->w = WINDOW_SIZE_X;
 	f->h = WINDOW_SIZE_Y;
+	f->stop_motion = FALSE;
 	return (f);
 }
 

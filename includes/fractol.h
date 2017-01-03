@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/29 17:11:52 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/03 18:20:08 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <pthread.h>
 # include <math.h>
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
@@ -24,7 +25,7 @@
 # define WINDOW_SIZE_X 800
 # define WINDOW_SIZE_Y 600
 
-# define ITERATION_MAX 300
+# define ITERATION_MAX 128
 
 typedef union		u_color
 {
@@ -57,6 +58,7 @@ typedef struct		s_fractal
 	int				i_max;
 	int				w;
 	int				h;
+	char			stop_motion;
 }					t_fractal;
 
 typedef struct		s_app
@@ -78,4 +80,6 @@ void				*ft_compute_fractal(char *name_fractal);
 void				ft_draw_fractal(t_app *app);
 int					ft_get_color(double c_index);
 int					ft_key_hook(int keycode, t_app *app);
+int					ft_motion_hook(int x, int y, t_app *app);
+int					ft_mouse_hook(int button, int x, int y, t_app *app);
 #endif
