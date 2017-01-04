@@ -20,7 +20,7 @@ CPPFLAGS = -I$(INC_PATH)
 
 LDFLAGS = -L./libft -L./minilibx/osx
 
-LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit -lm
+LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit -lm -lpthread
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))

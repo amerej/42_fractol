@@ -6,13 +6,13 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/03 17:46:44 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/04 11:56:56 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int		ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
+static int		ft_compute_julia(t_fractal *f, t_point *p)
 {
 	int		i;
 
@@ -34,7 +34,7 @@ static int		ft_compute_julia(t_app *app, t_fractal *f, t_point *p)
 	return (0xffffff);
 }
 
-static int		ft_compute_mandelbrot(t_app *app, t_fractal *f, t_point *p)
+static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
 {
 	int		i;
 
@@ -60,7 +60,7 @@ static int		ft_compute_mandelbrot(t_app *app, t_fractal *f, t_point *p)
 	return (FALSE);
 }
 
-static int		ft_compute_bship(t_app *app, t_fractal *f, t_point *p)
+static int		ft_compute_bship(t_fractal *f, t_point *p)
 {
 	int		i;
 
@@ -75,7 +75,7 @@ static int		ft_compute_bship(t_app *app, t_fractal *f, t_point *p)
 	{
 		f->old.r = f->new.r;
 		f->old.i = f->new.i;
-		f->new.r = pow(f->old.r, 2) - f->old.i * f->old.i + f->c.r;
+		f->new.r = f->old.r * f->old.r - f->old.i * f->old.i + f->c.r;
 		f->new.i = 2 * fabs(f->old.r * f->old.i) + f->c.i;
 		if ((f->new.r * f->new.r + f->new.i * f->new.i) > 4)
 			break ;
@@ -86,7 +86,7 @@ static int		ft_compute_bship(t_app *app, t_fractal *f, t_point *p)
 	return (FALSE);
 }
 
-static int		ft_compute_sierpinski(t_app *app, t_fractal *f, t_point *p)
+static int		ft_compute_sierpinski(t_fractal *f, t_point *p)
 {
 	int x;
 	int y;

@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/03 17:42:48 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/04 13:36:32 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int		ft_mouse_hook(int button, int x, int y, t_app *app)
 {
 	if (button == 1 || button == 4)
 	{
-		app->fractal->move.x += 0.002 * (400 - x) / app->fractal->zoom;
-		app->fractal->move.y -= 0.002 * (300 - y) / app->fractal->zoom;
+		app->fractal->move.x += 0.002 * (WINDOW_SIZE_X / 2 - x) / app->fractal->zoom;
+		app->fractal->move.y -= 0.002 * (WINDOW_SIZE_Y / 2 - y) / app->fractal->zoom;
 		if (button == 4)
 			app->fractal->zoom *= 2;
 	}
@@ -35,8 +35,8 @@ int		ft_motion_hook(int x, int y, t_app *app)
 	{
 		// app->fractal->c.r = (double)x / (double)app->fractal->w * 4 - 2;
 		// app->fractal->c.i = (double)y / (double)app->fractal->h * 4 - 2;
-		app->fractal->c.r = -0.7 + (double)x / 800;
-		app->fractal->c.i = 0.27015 + (double)y / 600;
+		app->fractal->c.r = -0.7 + (double)x / WINDOW_SIZE_X;
+		app->fractal->c.i = 0.27015 + (double)y / WINDOW_SIZE_Y;
 		ft_draw_fractal(app);
 	}
 	return (FALSE);

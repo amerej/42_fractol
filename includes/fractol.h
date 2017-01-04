@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/03 18:21:09 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/04 13:36:44 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
+#include <pthread.h>
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
 
-# define WINDOW_SIZE_X 800
-# define WINDOW_SIZE_Y 600
+# define WINDOW_SIZE_X 1920
+# define WINDOW_SIZE_Y 1080
 
-# define ITERATION_MAX 128
+# define ITERATION_MAX 50
+# define NB_THREADS 1
 
 typedef union		u_color
 {
@@ -71,6 +73,13 @@ typedef struct		s_app
 	int				endian;
 	t_fractal		*fractal;
 }					t_app;
+
+typedef struct		s_thread_data
+{
+	t_app			*app;
+	t_fractal		*f;
+	int				i;
+}					t_thread_data;
 
 t_app				*ft_new_window(int width, int height, char *title);
 char				*ft_get_user_input(char *argv);
