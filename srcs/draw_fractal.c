@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/04 15:39:51 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/04 17:40:41 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ static void		ft_draw_img(t_thread_data *thread)
 	t_point		p;
 	int 		(*fun)(t_fractal*, t_point*) = thread->f->fun;
 
-	p.y = WINDOW_SIZE_Y / NB_THREADS * (thread->i);
-	while (p.y < WINDOW_SIZE_Y / NB_THREADS * (thread->i + 1))
+	p.y = WINDOW_SIZE_Y / NB_THREAD * (thread->i);
+	while (p.y < WINDOW_SIZE_Y / NB_THREAD * (thread->i + 1))
 	{
-		p.x = -1;
-		while (++p.x < WINDOW_SIZE_X)
+		p.x = 0;
+		while (p.x < WINDOW_SIZE_X)
 		{
 			ft_put_pixel_img(thread->app, &p, (fun)(thread->f, &p));
+			++p.x;
 		}
 		++p.y;
 	}
@@ -51,28 +52,34 @@ static void		ft_draw_img(t_thread_data *thread)
 	free(thread);
 }
 
-void			ft_draw_fractal(t_app *app)
+static void		ft_multi_thread_draw(t_app *app)
 {
-	pthread_t		thread_draw[NB_THREADS];
+	pthread_t		thread_draw[NB_THREAD];
 	t_thread_data	*thread;
 	int				i;
 
-	app->img_ptr = mlx_new_image(app->mlx, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-	app->data = mlx_get_data_addr(app->img_ptr, &(app->bpp), &(app->size_line),
-		&(app->endian));
 	i = -1;
-	while (++i < NB_THREADS)
+	while (++i < NB_THREAD)
 	{
 		thread = (t_thread_data *)malloc(sizeof(t_thread_data));
 		thread->i = i;
 		thread->app = app;
-		thread->f = malloc(sizeof(t_fractal));
+		thread->f = (t_fractal *)malloc(sizeof(t_fractal));
 		ft_memcpy(thread->f, app->fractal, sizeof(t_fractal));
-		pthread_create(&thread_draw[thread->i], NULL, (void *)ft_draw_img, thread);
+		pthread_create(&thread_draw[thread->i], NULL,
+			(void *)ft_draw_img, thread);
 	}
 	i = -1;
-	while (++i < NB_THREADS)
+	while (++i < NB_THREAD)
 		pthread_join(thread_draw[i], NULL);
+}
+
+void			ft_draw_fractal(t_app *app)
+{
+	app->img_ptr = mlx_new_image(app->mlx, WINDOW_SIZE_X, WINDOW_SIZE_Y);
+	app->data = mlx_get_data_addr(app->img_ptr, &(app->bpp), &(app->size_line),
+		&(app->endian));
+	ft_multi_thread_draw(app);
 	mlx_put_image_to_window(app->mlx, app->win, app->img_ptr, 0, 0);
 	mlx_destroy_image(app->mlx, app->img_ptr);
 }
