@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/04 13:36:44 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/04 15:42:28 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # define WINDOW_SIZE_X 1920
 # define WINDOW_SIZE_Y 1080
 
-# define ITERATION_MAX 50
-# define NB_THREADS 1
+# define ITERATION_MAX 300
+# define NB_THREADS 4
 
 typedef union		u_color
 {
 	int				number;
-	unsigned char	channels[4];
+	unsigned char	channels[3];
 }					t_color;
 
 typedef struct		s_point
