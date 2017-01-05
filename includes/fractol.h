@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/04 17:02:49 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 10:57:34 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
 
-# define WINDOW_SIZE_X 1920
-# define WINDOW_SIZE_Y 1080
+# define WINDOW_SIZE_X 800
+# define WINDOW_SIZE_Y 600
 
-# define ITERATION_MAX 300
+# define ITERATION_MAX 128
 # define NB_THREAD 4
 
 typedef union		u_color
@@ -60,6 +60,7 @@ typedef struct		s_fractal
 	int				w;
 	int				h;
 	char			stop_motion;
+	char			*name;
 }					t_fractal;
 
 typedef struct		s_app
