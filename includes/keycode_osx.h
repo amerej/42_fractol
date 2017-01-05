@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 02:05:20 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/03 16:33:36 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 14:38:33 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 # define PTR_MOTION_MASK (1L<<6)
 # define MOTION_NOTIFY 6
+# define KEY_PRESS_MASK (1L<<0)
+# define KEY_RELEASE_MASK (1L<<1)
+# define KEY_PRESS_NOTIFY 2
+# define KEY_RELEASE_NOTIFY 3 
 
 # define KEY_MOUSE_CLIC_L 1
 # define KEY_MOUSE_CLIC_R 2

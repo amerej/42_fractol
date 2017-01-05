@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:49:06 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 11:11:21 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 12:02:56 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ft_init_fractal(t_app *app, char *name_fractal)
 	t_fractal	*f;
 
 	f = (t_fractal *)malloc(sizeof(t_fractal));
+	f->cs = (t_cscheme *)malloc(sizeof(t_cscheme));
 	if (!(ft_strcmp(name_fractal, "julia")))
 		ft_init_julia(f);
 	if (!(ft_strcmp(name_fractal, "mandelbrot")))
@@ -77,4 +78,5 @@ void	ft_init_fractal(t_app *app, char *name_fractal)
 	if (!(ft_strcmp(name_fractal, "sierpinski")))
 		ft_init_sierpinski(f);
 	app->fractal = f;
+	ft_init_color(f->cs);
 }

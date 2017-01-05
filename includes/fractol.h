@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 11:12:02 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 14:29:48 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 
 # define ITERATION_MAX 250
 # define NB_THREAD 4
+
+typedef struct		s_cscheme
+{
+	double			freq[3];
+	int				phase[3];
+	int				amp[3];
+	int				center[3];
+}					t_cscheme;
 
 typedef union		u_color
 {
@@ -61,6 +69,7 @@ typedef struct		s_fractal
 	int				h;
 	char			stop_motion;
 	char			*name;
+	t_cscheme		*cs;
 }					t_fractal;
 
 typedef struct		s_app
@@ -87,7 +96,10 @@ char				*ft_get_user_input(char *argv);
 void				ft_init_fractal(t_app *app, char *name_fractal);
 void				*ft_compute_fractal(char *name_fractal);
 void				ft_draw_fractal(t_app *app);
-int					ft_get_color(double c_index);
+void				ft_init_color(t_cscheme	*cs);
+int					ft_get_color(double c_index, t_cscheme *cs);
+int					ft_mod_color_1(int keycode, t_app *app);
+void				ft_mod_color_2(int keycode, t_app *app);
 int					ft_key_hook(int keycode, t_app *app);
 int					ft_motion_hook(int x, int y, t_app *app);
 int					ft_mouse_hook(int button, int x, int y, t_app *app);

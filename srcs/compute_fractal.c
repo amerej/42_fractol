@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 10:36:00 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 11:59:59 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		ft_compute_julia(t_fractal *f, t_point *p)
 	}
 	if (i < f->i_max)
 		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2)));
+			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
 	return (0xffffff);
 }
 
@@ -56,7 +56,7 @@ static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
 	}
 	if (i < f->i_max)
 		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2)));
+			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
 	return (FALSE);
 }
 
@@ -82,7 +82,7 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 	}
 	if (i < f->i_max)
 		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2)));
+			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
 	return (FALSE);
 }
 

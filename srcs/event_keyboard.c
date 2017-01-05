@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:05:19 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 11:08:01 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 14:39:16 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static void		ft_reset(int keycode, t_app *app)
 {
 	if (keycode == KEY_KP_DOT)
 	{
-		if(!ft_strcmp(app->fractal->name, "julia"))
+		if(!ft_strcmp(app->fractal->name, "julia") ||
+			!ft_strcmp(app->fractal->name, "mandelbrot") ||
+			!ft_strcmp(app->fractal->name, "bship"))
 			ft_init_fractal(app, app->fractal->name);
 	}
 }

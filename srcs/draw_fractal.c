@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/05 11:01:44 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 14:38:52 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ static void		ft_put_pixel_img(t_app *app, t_point *p, int color)
 	app->data[i] = color;
 	app->data[++i] = color >> 8;
 	app->data[++i] = color >> 16;
-}
-
-int				ft_get_color(double c_index)
-{
-	t_color		c;
-
-	c.channels[0] = (unsigned char)(sin(0.030 * c_index + 6) * 127 + 55);
-	c.channels[1] = (unsigned char)(sin(0.005 * c_index + 6) * 200 + 55);
-	c.channels[2] = (unsigned char)(sin(0.000 * c_index + 6) * 200 + 55);
-	return (c.number);
 }
 
 static void		ft_draw_img(t_thread_data *thread)
@@ -58,8 +48,8 @@ static void		ft_multi_thread_draw(t_app *app)
 	t_thread_data	*thread;
 	int				i;
 
-	i = -1;
-	while (++i < NB_THREAD)
+	i = 0;
+	while (i < NB_THREAD)
 	{
 		thread = (t_thread_data *)malloc(sizeof(t_thread_data));
 		thread->i = i;
@@ -68,10 +58,14 @@ static void		ft_multi_thread_draw(t_app *app)
 		ft_memcpy(thread->f, app->fractal, sizeof(t_fractal));
 		pthread_create(&thread_draw[thread->i], NULL,
 			(void *)ft_draw_img, thread);
+		++i;
 	}
-	i = -1;
-	while (++i < NB_THREAD)
+	i = 0;
+	while (i < NB_THREAD)
+	{
 		pthread_join(thread_draw[i], NULL);
+		++i;
+	}
 }
 
 void			ft_draw_fractal(t_app *app)

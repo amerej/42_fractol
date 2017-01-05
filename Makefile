@@ -4,7 +4,8 @@ NAME = fractol
 SRC_PATH = srcs
 
 SRC_NAME = 	main.c init_env.c event_mouse.c draw_fractal.c user_input.c \
-			init_fractal.c compute_fractal.c draw_fractal.c event_keyboard.c
+			init_fractal.c compute_fractal.c draw_fractal.c event_keyboard.c \
+			color.c event_color.c
 
 OBJ_PATH = objs
 
