@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 11:01:31 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/05 11:12:02 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WINDOW_SIZE_X 800
 # define WINDOW_SIZE_Y 600
 
-# define ITERATION_MAX 128
+# define ITERATION_MAX 250
 # define NB_THREAD 4
 
 typedef union		u_color
