@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 12:46:31 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 15:06:51 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static void		ft_scale_mouse(int button, int x, int y, t_app *app)
 {
-	if (button == 4)
+	if (button == 1 || button == 4)
 	{
-		app->fractal->zoom *= 1.1;
-		app->fractal->move.x += ((app->fractal->h / 2) /
-			app->fractal->w / 2) / app->fractal->zoom * 10;
-		app->fractal->move.y += ((app->fractal->w / 2) /
-			app->fractal->h / 2) / app->fractal->zoom * 10;
+		app->fractal->move.x += 0.002 *
+			(WINDOW_SIZE_X / 2 - x) / app->fractal->zoom;
+		app->fractal->move.y -= 0.002 *
+			(WINDOW_SIZE_Y / 2 - y) / app->fractal->zoom;
+		if (button == 4)
+		{
+			app->fractal->zoom *= 2;
+		}
 	}
 	if (button == 5)
 	{
-		app->fractal->zoom /= 1.1;
-		app->fractal->move.x += ((app->fractal->h / 2) /
-			app->fractal->w / 2) / app->fractal->zoom * 10;
-		app->fractal->move.y += ((app->fractal->w / 2) /
-			app->fractal->h / 2) / app->fractal->zoom * 10;
+		app->fractal->zoom =
+			(app->fractal->zoom <= 1) ? 1 : app->fractal->zoom / 2;
 	}
 }
 

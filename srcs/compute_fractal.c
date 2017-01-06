@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 11:59:59 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 15:06:18 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		ft_compute_julia(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->new.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) + f->move.x;
+	f->new.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
 	f->new.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
 	i = -1;
 	while (++i < f->i_max)
@@ -38,7 +38,7 @@ static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->z.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) + f->move.x;
+	f->z.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
 	f->z.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
 	f->new.r = 0;
 	f->new.i = 0;
@@ -64,7 +64,7 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->c.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) + f->move.x;
+	f->c.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
 	f->c.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
 	f->new.r = 0;
 	f->new.i = 0;
@@ -86,23 +86,6 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 	return (FALSE);
 }
 
-static int		ft_compute_sierpinski(t_fractal *f, t_point *p)
-{
-	int x;
-	int y;
-
-	x = p->x;
-	y = p->y;
-	while (x > 0 || y > 0)
-	{
-		if (x % 3 == 1 && y % 3 == 1)
-		return (0x3fbc49);
-		y /= 3;
-		x /= 3;
-	}
-	return (0x3fa8bc);
-}
-
 void			*ft_compute_fractal(char *name_fractal)
 {
 	void	*fun;
@@ -113,7 +96,5 @@ void			*ft_compute_fractal(char *name_fractal)
 		fun = &ft_compute_mandelbrot;
 	if (!(ft_strcmp(name_fractal, "bship")))
 		fun = &ft_compute_bship;
-	if (!(ft_strcmp(name_fractal, "sierpinski")))
-		fun = &ft_compute_sierpinski;
 	return (fun);
 }
