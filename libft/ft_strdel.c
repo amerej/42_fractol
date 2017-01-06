@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/11 17:01:44 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/04 16:51:26 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/29 18:23:45 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/03 14:28:51 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	ft_strdel(char **as)
 {
-	if (as && *as)
-		ft_memdel((void **)as);
+	ft_memdel((void**)as);
 }

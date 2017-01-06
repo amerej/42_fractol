@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_error.c                                    :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 10:45:34 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/26 04:16:24 by amerej           ###   ########.fr       */
+/*   Created: 2016/10/04 22:18:22 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/07 15:50:10 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_exit_error(void)
+void	ft_lstpushback(t_list **begin_list, t_list *elem)
 {
-	exit(EXIT_FAILURE);
+	t_list	*list;
+
+	list = *begin_list;
+	if (!list)
+	{
+		list = elem;
+		*begin_list = list;
+	}
+	else
+	{
+		while (list->next)
+			list = list->next;
+		list->next = elem;
+	}
 }

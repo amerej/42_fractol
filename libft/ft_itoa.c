@@ -3,60 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/16 03:43:40 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/10 09:58:43 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/18 19:28:04 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/12/09 17:21:28 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_nb(int n)
+static int		n_length(long int n)
 {
-	int		len;
-	long	l_nb;
+	size_t	len;
 
-	l_nb = n;
 	len = 0;
-	if (n < 0)
+	if (n <= 0)
+		len++;
+	while (n)
 	{
-		l_nb = -n;
+		n /= 10;
 		len++;
 	}
-	while (l_nb != l_nb % 10)
-	{
-		len++;
-		l_nb = (l_nb - l_nb % 10) / 10;
-	}
-	len++;
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	char	*str;
-	int		len;
-	int		i;
-	long	l_nb;
+	long int	nb;
+	char		*result;
+	size_t		i;
 
+	nb = n;
 	i = 0;
-	l_nb = n;
-	len = ft_len_nb(n);
-	str = ft_memalloc(sizeof(*str) * (len + 1));
-	if (!str)
-		return (str);
-	if (n < 0)
+	result = (char*)malloc(sizeof(char) * (n_length(nb) + 1));
+	if (!result)
+		return (NULL);
+	if (nb < 0)
 	{
-		str[0] = '-';
-		l_nb *= -1;
+		nb *= -1;
+		result[i] = '-';
 	}
-	while (i < (n < 0 ? len - 1 : len))
+	i = n_length(n);
+	result[i] = '\0';
+	if (nb == 0)
+		result[--i] = 0 + '0';
+	while (nb != 0)
 	{
-		str[len - i - 1] = (l_nb % 10) + 48;
-		l_nb = (l_nb - l_nb % 10) / 10;
-		i++;
+		i--;
+		result[i] = (nb % 10) + '0';
+		nb /= 10;
 	}
-	str[len] = '\0';
-	return (str);
+	return (result);
 }

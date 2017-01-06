@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode_osx.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/22 02:05:20 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/06 16:38:54 by aditsch          ###   ########.fr       */
+/*   Created: 2017/01/05 18:25:59 by gpoblon           #+#    #+#             */
+/*   Updated: 2017/01/05 18:26:00 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@
 # define KEY_7 26
 # define KEY_8 28
 # define KEY_9 25
-
-# define KEY_SPACE 49
 
 # define KEY_KP_DOT 65
 # define KEY_KP_ENTER 76

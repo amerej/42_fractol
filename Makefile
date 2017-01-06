@@ -26,8 +26,6 @@ LDLIBS = -lft -lmlx -framework OpenGL -framework AppKit -lm -lpthread
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-.PHONY: all, clean, fclean, re
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
@@ -48,3 +46,5 @@ fclean: clean
 	make -C ./libft fclean
 
 re:	fclean all
+
+.PHONY: all, clean, fclean, re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/11 01:23:15 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/06 12:23:03 by aditsch          ###   ########.fr       */
+/*   Created: 2016/12/20 18:56:15 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/12/20 18:56:23 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 int		ft_atoi(const char *nptr)
 {
-	int		res;
-	int		sign;
+	size_t	i;
+	int		result;
+	char	sign;
 
-	res = 0;
+	i = 0;
+	result = 0;
 	sign = 1;
-	while (*nptr == ' ' || *nptr == '\t' || *nptr == '\n' ||
-			*nptr == '\f' || *nptr == '\r' || *nptr == '\v')
-		nptr++;
-	if (*nptr == '-')
+	while (nptr[i] == ' ' || nptr[i] == '\t' || nptr[i] == '\n'
+	|| nptr[i] == '\v' || nptr[i] == '\r' || nptr[i] == '\f')
+		i++;
+	if (nptr[i] == '-')
 		sign = -1;
-	if (*nptr == '-' || *nptr == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-		res = res * 10 + *nptr++ - '0';
-	return (sign * res);
+	if (nptr[i] == '+' || nptr[i] == '-')
+		i++;
+	while (nptr[i] && (nptr[i] >= 48 && nptr[i] <= 57))
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }

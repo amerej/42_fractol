@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/11 01:26:55 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/09 10:56:22 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/23 16:56:52 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/12/11 18:41:29 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*ft_strcat(char *dst, const char *src)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
 	j = 0;
+	i = 0;
 	while (dst[i])
 		i++;
 	while (src[j])

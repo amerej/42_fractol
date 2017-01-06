@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/19 13:07:05 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 19:53:33 by aditsch          ###   ########.fr       */
+/*   Created: 2017/01/05 18:27:19 by gpoblon           #+#    #+#             */
+/*   Updated: 2017/01/06 16:49:14 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static int	ft_check_user_input(char *argv)
 {
 	if (ft_strcmp(argv, "julia") == FALSE ||
 		ft_strcmp(argv, "mandelbrot") == FALSE ||
-		ft_strcmp(argv, "bship") == FALSE ||
-		ft_strcmp(argv, "sierpinski") == FALSE)
+		ft_strcmp(argv, "bship") == FALSE)
 		return (TRUE);
 	return (FALSE);
 }

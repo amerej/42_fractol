@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/16 01:43:14 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/05 14:35:09 by aditsch          ###   ########.fr       */
+/*   Created: 2016/10/01 18:01:30 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/04 16:17:40 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s)
 {
-	int		i;
-	int		j;
-	char	*ret;
+	size_t	i;
+	size_t	start;
+	size_t	end;
+	char	*new_s;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	j = 0;
-	ret = NULL;
-	if (!(s))
-		return (ret);
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+	while (s[i] && ft_iswhitespace(s[i]))
 		i++;
-	while (s[j])
-		j++;
-	j--;
-	while (j >= 0 && (s[j] == ' ' || s[j] == '\n' || s[j] == '\t'))
-		j--;
-	ret = ft_strnew((j - i + 1 < 0) ? 1 : j - i + 1);
-	if (ret)
-		ret = ft_strncpy(ret, &(s[i]), (j - i + 1 < 0) ? 1 : j - i + 1);
-	return (ret);
+	start = i;
+	end = 0;
+	while (s[i])
+	{
+		if (!ft_iswhitespace(s[i]))
+			end = i;
+		i++;
+	}
+	new_s = ft_strnew(start == ft_strlen(s) ? 0 : end - start + 1);
+	CHECKPVN(new_s);
+	if (new_s && start != ft_strlen(s))
+		new_s = ft_strncpy(new_s, (s + start), end - start + 1);
+	new_s[ft_strlen(new_s)] = '\0';
+	return (new_s);
 }

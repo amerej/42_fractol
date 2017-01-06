@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_error_str.c                                :+:      :+:    :+:   */
+/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 10:49:04 by aditsch           #+#    #+#             */
-/*   Updated: 2016/12/28 10:38:12 by aditsch          ###   ########.fr       */
+/*   Created: 2016/10/04 17:24:46 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/03 14:28:51 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_exit_error_str(char *str)
+int		ft_iswhitespace(int c)
 {
-	ft_putendl_fd(str, 2);
-	ft_exit_error();
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	return (0);
 }

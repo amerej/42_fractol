@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/09 10:10:10 by aditsch           #+#    #+#             */
-/*   Updated: 2016/09/07 11:48:09 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/18 13:39:15 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/03 14:28:51 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int		ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126) ? 1 : 0;
+	if (ft_isspace(c) || ft_isalnum(c) || ft_ispunct(c))
+		return (1);
+	return (0);
 }

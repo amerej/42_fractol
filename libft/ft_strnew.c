@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/11 16:06:33 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/09 11:01:55 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/29 16:49:43 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/04 14:02:04 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t n)
+char	*ft_strnew(size_t size)
 {
-	return ((char *)ft_memalloc(sizeof(char) * (n + 1)));
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = NULL;
+	str = (char *)malloc(sizeof(char) * size + 1);
+	CHECKPVN(str);
+	while (i < size + 1)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }

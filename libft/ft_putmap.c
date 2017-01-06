@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_back.c                                :+:      :+:    :+:   */
+/*   ft_putmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 13:13:54 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/17 11:04:53 by aditsch          ###   ########.fr       */
+/*   Created: 2016/10/13 10:40:54 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/03 14:28:51 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_list_push_back(t_list **begin_list, t_list *elem)
+void	ft_putmap(char **map)
 {
-	t_list	*list;
+	int y;
+	int x;
 
-	list = *begin_list;
-	if (!list)
+	y = 0;
+	while (map[y])
 	{
-		list = elem;
-		*begin_list = list;
-	}
-	else
-	{
-		while (list->next)
-			list = list->next;
-		list->next = elem;
+		x = 0;
+		while (map[y][x])
+		{
+			ft_putchar(map[y][x]);
+			x++;
+		}
+		ft_putchar('\n');
+		y++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 21:45:56 by aditsch          ###   ########.fr       */
+/*   Created: 2017/01/05 18:25:26 by gpoblon           #+#    #+#             */
+/*   Updated: 2017/01/06 21:49:34 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
 
-# define WIN_W 800
-# define WIN_H 600
+# define WINDOW_SIZE_X 800
+# define WINDOW_SIZE_Y 600
 
-# define I_MIN 50
-# define I_MAX 250
+# define ITERATION_MAX 250
 # define NB_THREAD 4
 
 typedef struct		s_cscheme
@@ -35,6 +34,7 @@ typedef struct		s_cscheme
 	int				phase[3];
 	int				amp[3];
 	int				center[3];
+	int				lastkey;
 }					t_cscheme;
 
 typedef union		u_color
@@ -82,7 +82,7 @@ typedef struct		s_app
 	int				bpp;
 	int				size_line;
 	int				endian;
-	t_fractal		*f;
+	t_fractal		*fractal;
 }					t_app;
 
 typedef struct		s_thread_data
@@ -99,9 +99,11 @@ void				*ft_compute_fractal(char *name_fractal);
 void				ft_draw_fractal(t_app *app);
 void				ft_init_color(t_cscheme	*cs);
 int					ft_get_color(double c_index, t_cscheme *cs);
-int					ft_mod_color_1(int keycode, t_app *app);
-void				ft_mod_color_2(int keycode, t_app *app);
+void				ft_color_preset(int keycode, t_app *app);
+void				ft_color_event(int keycode, t_app *app);
+void				ft_modify_color(int keycode, t_app *app);
 int					ft_key_hook(int keycode, t_app *app);
 int					ft_motion_hook(int x, int y, t_app *app);
 int					ft_mouse_hook(int button, int x, int y, t_app *app);
+
 #endif

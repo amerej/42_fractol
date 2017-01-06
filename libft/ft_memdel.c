@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/11 16:03:39 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/07 17:04:50 by aditsch          ###   ########.fr       */
+/*   Created: 2016/09/23 16:36:47 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/03 14:58:27 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_memdel(void **ap)
 {
-	if (!(ap && *ap))
-		return ;
+	CHECKPV(ap);
+	CHECKPV(*ap);
 	free(*ap);
 	*ap = NULL;
 }

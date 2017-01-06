@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpoblon <gpoblon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/06 17:15:50 by aditsch           #+#    #+#             */
-/*   Updated: 2016/11/07 14:30:11 by aditsch          ###   ########.fr       */
+/*   Created: 2016/10/04 21:37:33 by gpoblon           #+#    #+#             */
+/*   Updated: 2016/11/14 16:39:04 by gpoblon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*ret;
-	t_list	*tmp;
-	t_list	*bgn;
+	t_list	*list;
+	t_list	*tmplst;
+	size_t	check;
 
-	if (!lst || !f)
+	list = NULL;
+	tmplst = NULL;
+	check = 0;
+	if (!(f && lst))
 		return (NULL);
-	tmp = f(lst);
-	if (!tmp || !(ret = ft_lstnew(tmp->content, tmp->content_size)))
-		return (NULL);
-	bgn = ret;
-	while (lst->next)
+	while (lst)
 	{
-		tmp = f(lst->next);
-		if (tmp && (ret->next = ft_lstnew(tmp->content, tmp->content_size)))
-		{
-			ret = ret->next;
-			lst = lst->next;
-		}
+		tmplst = f(lst);
+		ft_lstpushback(&list, ft_lstnew(tmplst->content, tmplst->content_size));
+		CHECKPVN(list);
+		if (check == ft_lstsize(list))
+			return (NULL);
 		else
-			lst->next = NULL;
+			check = ft_lstsize(list);
+		lst = lst->next;
 	}
-	return (bgn);
+	return (list);
 }
