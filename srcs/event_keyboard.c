@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:05:19 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 19:37:36 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 21:40:38 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		ft_key_hook(int key, t_app *a)
 	{
 		mlx_destroy_window(a->mlx, a->win);
 		free(a->f);
+		free(a->f->cs);
 		free(a);
 		exit(EXIT_SUCCESS);
 	}

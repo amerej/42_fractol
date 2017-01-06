@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 19:57:52 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 21:33:11 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int		ft_compute_julia(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->new.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
-	f->new.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
+	f->new.r = 1.5 * (p->x - WIN_W / 2) / (0.5 * f->zoom * WIN_W) - f->move.x;
+	f->new.i = (p->y - WIN_H / 2) / (0.5 * f->zoom * WIN_H) + f->move.y;
 	i = -1;
 	while (++i < f->i_max)
 	{
@@ -38,8 +38,8 @@ static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->z.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
-	f->z.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
+	f->z.r = 1.5 * (p->x - WIN_W / 2) / (0.5 * f->zoom * WIN_W) - f->move.x;
+	f->z.i = (p->y - WIN_H / 2) / (0.5 * f->zoom * WIN_H) + f->move.y;
 	f->new.r = 0;
 	f->new.i = 0;
 	f->old.r = 0;
@@ -64,8 +64,8 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 {
 	int		i;
 
-	f->c.r = 1.5 * (p->x - f->w / 2) / (0.5 * f->zoom * f->w) - f->move.x;
-	f->c.i = (p->y - f->h / 2) / (0.5 * f->zoom * f->h) + f->move.y;
+	f->c.r = 1.5 * (p->x - WIN_W / 2) / (0.5 * f->zoom * WIN_W) - f->move.x;
+	f->c.i = (p->y - WIN_H / 2) / (0.5 * f->zoom * WIN_H) + f->move.y;
 	f->new.r = 0;
 	f->new.i = 0;
 	f->old.r = 0;

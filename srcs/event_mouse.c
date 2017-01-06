@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 19:45:12 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 21:32:51 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				ft_motion_hook(int x, int y, t_app *a)
 {
 	if (a->f->stop_motion)
 		return (FALSE);
-	if (x >= 0 && y >= 0 && x <= a->f->w && y <= a->f->h)
+	if (x >= 0 && y >= 0 && x <= WIN_W && y <= WIN_H)
 	{
 		a->f->c.r = -0.7 + (double)x / WIN_W;
 		a->f->c.i = 0.27015 + (double)y / WIN_H;

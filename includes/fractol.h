@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 19:54:53 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 21:45:56 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
-#include <pthread.h>
+# include <pthread.h>
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
 
