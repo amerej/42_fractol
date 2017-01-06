@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 15:31:49 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:54:53 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 # include "../minilibx/osx/mlx.h"
 # include "keycode_osx.h"
 
-# define WINDOW_SIZE_X 800
-# define WINDOW_SIZE_Y 600
+# define WIN_W 800
+# define WIN_H 600
 
-# define ITERATION_MAX 250
+# define I_MIN 50
+# define I_MAX 250
 # define NB_THREAD 4
 
 typedef struct		s_cscheme
@@ -81,7 +82,7 @@ typedef struct		s_app
 	int				bpp;
 	int				size_line;
 	int				endian;
-	t_fractal		*fractal;
+	t_fractal		*f;
 }					t_app;
 
 typedef struct		s_thread_data

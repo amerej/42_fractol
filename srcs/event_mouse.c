@@ -6,48 +6,41 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 15:06:51 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:45:12 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		ft_scale_mouse(int button, int x, int y, t_app *app)
+static void		ft_scale_mouse(int button, int x, int y, t_app *a)
 {
 	if (button == 1 || button == 4)
 	{
-		app->fractal->move.x += 0.002 *
-			(WINDOW_SIZE_X / 2 - x) / app->fractal->zoom;
-		app->fractal->move.y -= 0.002 *
-			(WINDOW_SIZE_Y / 2 - y) / app->fractal->zoom;
+		a->f->move.x += 0.002 * (WIN_W / 2 - x) / a->f->zoom;
+		a->f->move.y -= 0.002 * (WIN_H / 2 - y) / a->f->zoom;
 		if (button == 4)
-		{
-			app->fractal->zoom *= 2;
-		}
+			a->f->zoom *= 2;
 	}
 	if (button == 5)
-	{
-		app->fractal->zoom =
-			(app->fractal->zoom <= 1) ? 1 : app->fractal->zoom / 2;
-	}
+		a->f->zoom = (a->f->zoom <= 1) ? 1 : a->f->zoom / 2;
 }
 
-int				ft_motion_hook(int x, int y, t_app *app)
+int				ft_motion_hook(int x, int y, t_app *a)
 {
-	if (app->fractal->stop_motion)
+	if (a->f->stop_motion)
 		return (FALSE);
-	if (x >= 0 && y >= 0 && x <= app->fractal->w && y <= app->fractal->h)
+	if (x >= 0 && y >= 0 && x <= a->f->w && y <= a->f->h)
 	{
-		app->fractal->c.r = -0.7 + (double)x / WINDOW_SIZE_X;
-		app->fractal->c.i = 0.27015 + (double)y / WINDOW_SIZE_Y;
-		ft_draw_fractal(app);
+		a->f->c.r = -0.7 + (double)x / WIN_W;
+		a->f->c.i = 0.27015 + (double)y / WIN_H;
+		ft_draw_fractal(a);
 	}
 	return (FALSE);
 }
 
-int				ft_mouse_hook(int button, int x, int y, t_app *app)
+int				ft_mouse_hook(int button, int x, int y, t_app *a)
 {
-	ft_scale_mouse(button, x, y, app);
-	ft_draw_fractal(app);
+	ft_scale_mouse(button, x, y, a);
+	ft_draw_fractal(a);
 	return (FALSE);
 }

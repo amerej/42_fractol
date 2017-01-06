@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 15:06:18 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:57:52 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 	return (FALSE);
 }
 
-void			*ft_compute_fractal(char *name_fractal)
+void			*ft_compute_fractal(char *name)
 {
-	void	*fun;
+	void	*f;
 
-	if (!(ft_strcmp(name_fractal, "julia")))
-		fun = &ft_compute_julia;
-	if (!(ft_strcmp(name_fractal, "mandelbrot")))
-		fun = &ft_compute_mandelbrot;
-	if (!(ft_strcmp(name_fractal, "bship")))
-		fun = &ft_compute_bship;
-	return (fun);
+	if (!(ft_strcmp(name, "julia")))
+		f = &ft_compute_julia;
+	if (!(ft_strcmp(name, "mandelbrot")))
+		f = &ft_compute_mandelbrot;
+	if (!(ft_strcmp(name, "bship")))
+		f = &ft_compute_bship;
+	return (f);
 }

@@ -6,83 +6,84 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:05:19 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 15:06:42 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:37:36 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static	void	ft_scale(int keycode, t_app *app)
+static	void	ft_scale(int key, t_app *a)
 {
-	if (keycode == KEY_KP_PLUS)
+	int		h_w;
+	int		h_h;
+	double	zr;
+
+	h_w = WIN_W / 2;
+	h_h = WIN_H / 2;
+	zr = a->f->zoom * 10;
+	if (key == KEY_KP_PLUS)
 	{
-		app->fractal->zoom *= 1.1;
-		app->fractal->move.x += ((WINDOW_SIZE_Y / 2) /
-			WINDOW_SIZE_X / 2) / app->fractal->zoom * 10;
-		app->fractal->move.y += ((WINDOW_SIZE_X / 2) /
-			WINDOW_SIZE_Y / 2) / app->fractal->zoom * 10;
+		a->f->zoom *= 1.1;
+		a->f->move.x += (h_h / h_w) / zr;
+		a->f->move.y += (h_w / h_h) / zr;
 	}
-	else if (keycode == KEY_KP_MINUS)
+	else if (key == KEY_KP_MINUS)
 	{
-		app->fractal->zoom /= 1.1;
-		app->fractal->move.x += ((WINDOW_SIZE_Y / 2) /
-			WINDOW_SIZE_X / 2) / app->fractal->zoom * 10;
-		app->fractal->move.y += ((WINDOW_SIZE_X / 2) /
-			WINDOW_SIZE_Y / 2) / app->fractal->zoom * 10;
+		a->f->zoom /= 1.1;
+		a->f->move.x += (h_h / h_w) / zr;
+		a->f->move.y += (h_w / h_h) / zr;
 	}
 }
 
-static	void	ft_translate(int keycode, t_app *app)
+static	void	ft_translate(int key, t_app *a)
 {
-	if (keycode == KEY_UP)
-		app->fractal->move.y += 10 / (app->fractal->zoom * 20);
-	else if (keycode == KEY_DOWN)
-		app->fractal->move.y -= 10 / (app->fractal->zoom * 20);
-	else if (keycode == KEY_LEFT)
-		app->fractal->move.x += 10 / (app->fractal->zoom * 20);
-	else if (keycode == KEY_RIGHT)
-		app->fractal->move.x -= 10 / (app->fractal->zoom * 20);
+	double	zr;
+
+	zr = a->f->zoom * 20;
+	if (key == KEY_UP)
+		a->f->move.y += 10 / zr;
+	else if (key == KEY_DOWN)
+		a->f->move.y -= 10 / zr;
+	else if (key == KEY_LEFT)
+		a->f->move.x += 10 / zr;
+	else if (key == KEY_RIGHT)
+		a->f->move.x -= 10 / zr;
 }
 
-static void		ft_reset(int keycode, t_app *app)
+static void		ft_reset(int key, t_app *a)
 {
-	if (keycode == KEY_KP_DOT)
+	if (key == KEY_KP_DOT)
 	{
-		if(!ft_strcmp(app->fractal->name, "julia") ||
-			!ft_strcmp(app->fractal->name, "mandelbrot") ||
-			!ft_strcmp(app->fractal->name, "bship"))
-			ft_init_fractal(app, app->fractal->name);
+		if(!ft_strcmp(a->f->name, "julia") ||
+			!ft_strcmp(a->f->name, "mandelbrot") ||
+			!ft_strcmp(a->f->name, "bship"))
+			ft_init_fractal(a, a->f->name);
 	}
 }
 
-static void		ft_mod_iter(int keycode, t_app *app)
+static void		ft_mod_iter(int key, t_app *a)
 {
-	if (keycode == KEY_PAGE_UP)
-	{
-		app->fractal->i_max += 10;
-	}
-	else if (keycode == KEY_PAGE_DOWN)
-	{
-		app->fractal->i_max =
-			(app->fractal->i_max <= 50) ? 50 : app->fractal->i_max - 10;
-	}
+	if (key == KEY_PAGE_UP)
+		a->f->i_max += 10;
+	else if (key == KEY_PAGE_DOWN)
+		a->f->i_max = (a->f->i_max <= I_MIN) ? I_MIN : a->f->i_max - 10;
 }
 
-int		ft_key_hook(int keycode, t_app *app)
+int		ft_key_hook(int key, t_app *a)
 {
-	if (keycode == KEY_ESC)
+	if (key == KEY_ESC)
 	{
-		mlx_destroy_window(app->mlx, app->win);
-		free(app->fractal);
-		free(app);
+		mlx_destroy_window(a->mlx, a->win);
+		free(a->f);
+		free(a);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 49)
-		app->fractal->stop_motion = app->fractal->stop_motion ? 0 : 1;
-	ft_translate(keycode, app);
-	ft_scale(keycode, app);
-	ft_reset(keycode, app);
-	ft_mod_iter(keycode, app);
-	ft_draw_fractal(app);
+	if (key == KEY_SPACE)
+		a->f->stop_motion = a->f->stop_motion ? FALSE : TRUE;
+	ft_translate(key, a);
+	ft_scale(key, a);
+	ft_reset(key, a);
+	ft_mod_iter(key, a);
+	ft_draw_fractal(a);
 	return (FALSE);
 }

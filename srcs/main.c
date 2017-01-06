@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:09:17 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/05 15:32:09 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:55:42 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int		ft_expose_hook(t_app *app)
 int		main(int argc, char *argv[])
 {
 	t_app	*app;
-	char	*name_fractal;
+	char	*name;
 
-	if (!(argc == 2 && (name_fractal = ft_get_user_input(argv[1]))))
+	if (!(argc == 2 && (name = ft_get_user_input(argv[1]))))
 		ft_exit_error_str("Usage: ./fractol julia || mandelbrot || bship");
-	if (!(app = ft_new_window(WINDOW_SIZE_X, WINDOW_SIZE_Y, "Fractol")))
+	if (!(app = ft_new_window(WIN_W, WIN_H, "Fractol")))
 		ft_exit_error();
-	ft_init_fractal(app, name_fractal);
+	ft_init_fractal(app, name);
 	mlx_hook(app->win, MOTION_NOTIFY, PTR_MOTION_MASK, ft_motion_hook, app);
 	mlx_key_hook(app->win, ft_key_hook, app);
 	mlx_mouse_hook(app->win, ft_mouse_hook, app);

@@ -6,20 +6,20 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/05 14:38:52 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 19:56:39 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		ft_put_pixel_img(t_app *app, t_point *p, int color)
+static void		ft_put_pixel_img(t_app *a, t_point *p, int color)
 {
 	int		i;
 
-	i = ((int)p->x * 4) + ((int)p->y * app->size_line);
-	app->data[i] = color;
-	app->data[++i] = color >> 8;
-	app->data[++i] = color >> 16;
+	i = ((int)p->x * 4) + ((int)p->y * a->size_line);
+	a->data[i] = color;
+	a->data[++i] = color >> 8;
+	a->data[++i] = color >> 16;
 }
 
 static void		ft_draw_img(t_thread_data *thread)
@@ -27,11 +27,11 @@ static void		ft_draw_img(t_thread_data *thread)
 	t_point		p;
 	int 		(*fun)(t_fractal*, t_point*) = thread->f->fun;
 
-	p.y = WINDOW_SIZE_Y / NB_THREAD * (thread->i);
-	while (p.y < WINDOW_SIZE_Y / NB_THREAD * (thread->i + 1))
+	p.y = WIN_H / NB_THREAD * (thread->i);
+	while (p.y < WIN_H / NB_THREAD * (thread->i + 1))
 	{
 		p.x = 0;
-		while (p.x < WINDOW_SIZE_X)
+		while (p.x < WIN_W)
 		{
 			ft_put_pixel_img(thread->app, &p, (fun)(thread->f, &p));
 			++p.x;
@@ -55,7 +55,7 @@ static void		ft_multi_thread_draw(t_app *app)
 		thread->i = i;
 		thread->app = app;
 		thread->f = (t_fractal *)malloc(sizeof(t_fractal));
-		ft_memcpy(thread->f, app->fractal, sizeof(t_fractal));
+		ft_memcpy(thread->f, app->f, sizeof(t_fractal));
 		pthread_create(&thread_draw[thread->i], NULL,
 			(void *)ft_draw_img, thread);
 		++i;
@@ -68,12 +68,12 @@ static void		ft_multi_thread_draw(t_app *app)
 	}
 }
 
-void			ft_draw_fractal(t_app *app)
+void			ft_draw_fractal(t_app *a)
 {
-	app->img_ptr = mlx_new_image(app->mlx, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-	app->data = mlx_get_data_addr(app->img_ptr, &(app->bpp), &(app->size_line),
-		&(app->endian));
-	ft_multi_thread_draw(app);
-	mlx_put_image_to_window(app->mlx, app->win, app->img_ptr, 0, 0);
-	mlx_destroy_image(app->mlx, app->img_ptr);
+	a->img_ptr = mlx_new_image(a->mlx, WIN_W, WIN_H);
+	a->data = mlx_get_data_addr(a->img_ptr, &(a->bpp), &(a->size_line),
+		&(a->endian));
+	ft_multi_thread_draw(a);
+	mlx_put_image_to_window(a->mlx, a->win, a->img_ptr, 0, 0);
+	mlx_destroy_image(a->mlx, a->img_ptr);
 }

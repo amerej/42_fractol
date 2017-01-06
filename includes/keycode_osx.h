@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 02:05:20 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/05 14:38:33 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 16:38:54 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define KEY_PRESS_MASK (1L<<0)
 # define KEY_RELEASE_MASK (1L<<1)
 # define KEY_PRESS_NOTIFY 2
-# define KEY_RELEASE_NOTIFY 3 
+# define KEY_RELEASE_NOTIFY 3
 
 # define KEY_MOUSE_CLIC_L 1
 # define KEY_MOUSE_CLIC_R 2
@@ -39,6 +39,8 @@
 # define KEY_7 26
 # define KEY_8 28
 # define KEY_9 25
+
+# define KEY_SPACE 49
 
 # define KEY_KP_DOT 65
 # define KEY_KP_ENTER 76

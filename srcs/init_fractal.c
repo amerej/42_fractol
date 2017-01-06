@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:49:06 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 15:06:35 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/06 20:01:11 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void		ft_init_julia(t_fractal *f)
 	f->move.x = 0;
 	f->move.y = 0;
 	f->zoom = 1;
-	f->i_max = ITERATION_MAX;
-	f->w = WINDOW_SIZE_X;
-	f->h = WINDOW_SIZE_Y;
+	f->i_max = I_MAX;
+	f->w = WIN_W;
+	f->h = WIN_H;
 	f->stop_motion = FALSE;
 }
 
@@ -34,9 +34,9 @@ static void		ft_init_mandelbrot(t_fractal *f)
 	f->move.x = 0.5;
 	f->move.y = 0;
 	f->zoom = 1;
-	f->i_max = ITERATION_MAX;
-	f->w = WINDOW_SIZE_X;
-	f->h = WINDOW_SIZE_Y;
+	f->i_max = I_MAX;
+	f->w = WIN_W;
+	f->h = WIN_H;
 }
 
 static void		ft_init_bship(t_fractal *f)
@@ -46,23 +46,23 @@ static void		ft_init_bship(t_fractal *f)
 	f->move.x = 0.5;
 	f->move.y = -0.5;
 	f->zoom = 1;
-	f->i_max = ITERATION_MAX;
-	f->w = WINDOW_SIZE_X;
-	f->h = WINDOW_SIZE_Y;
+	f->i_max = I_MAX;
+	f->w = WIN_W;
+	f->h = WIN_H;
 }
 
-void	ft_init_fractal(t_app *app, char *name_fractal)
+void	ft_init_fractal(t_app *a, char *name)
 {
 	t_fractal	*f;
 
 	f = (t_fractal *)malloc(sizeof(t_fractal));
 	f->cs = (t_cscheme *)malloc(sizeof(t_cscheme));
-	if (!(ft_strcmp(name_fractal, "julia")))
+	if (!(ft_strcmp(name, "julia")))
 		ft_init_julia(f);
-	if (!(ft_strcmp(name_fractal, "mandelbrot")))
+	if (!(ft_strcmp(name, "mandelbrot")))
 		ft_init_mandelbrot(f);
-	if (!(ft_strcmp(name_fractal, "bship")))
+	if (!(ft_strcmp(name, "bship")))
 		ft_init_bship(f);
-	app->fractal = f;
+	a->f = f;
 	ft_init_color(f->cs);
 }
