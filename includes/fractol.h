@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/06 21:45:56 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 15:47:52 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct		s_fractal
 	int				h;
 	char			stop_motion;
 	char			*name;
-	t_cscheme		*cs;
 }					t_fractal;
 
 typedef struct		s_app
@@ -83,6 +82,8 @@ typedef struct		s_app
 	int				size_line;
 	int				endian;
 	t_fractal		*f;
+	t_fractal		*tab_f;
+	t_cscheme		*cs;
 }					t_app;
 
 typedef struct		s_thread_data
