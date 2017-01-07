@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/06 19:56:39 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 17:18:17 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		ft_put_pixel_img(t_app *a, t_point *p, int color)
 {
-	int		i;
+	int	i;
 
 	i = ((int)p->x * 4) + ((int)p->y * a->size_line);
 	a->data[i] = color;
@@ -25,7 +25,8 @@ static void		ft_put_pixel_img(t_app *a, t_point *p, int color)
 static void		ft_draw_img(t_thread_data *thread)
 {
 	t_point		p;
-	int 		(*fun)(t_fractal*, t_point*) = thread->f->fun;
+	int 		(*fun)(t_fractal*, t_point*);
+	fun = thread->f->fun;
 
 	p.y = WIN_H / NB_THREAD * (thread->i);
 	while (p.y < WIN_H / NB_THREAD * (thread->i + 1))

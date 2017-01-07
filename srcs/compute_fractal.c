@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 15:48:26 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 17:23:56 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 	return (FALSE);
 }
 
-void			*ft_compute_fractal(char *name)
+void			*ft_compute_fractal(t_app *app, char *name)
 {
 	void	*f;
 

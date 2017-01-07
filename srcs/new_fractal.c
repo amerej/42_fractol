@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_fractal.c                                   :+:      :+:    :+:   */
+/*   new_fractal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 14:54:10 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 15:33:11 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 17:19:45 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static t_fractal	ft_create_julia(void)
+static t_fractal	ft_new_julia(void)
 {
 	t_fractal	f;
 	f = (t_fractal)malloc(sizeof(t_fractal));
@@ -21,7 +21,7 @@ static t_fractal	ft_create_julia(void)
 	return (f);
 }
 
-static t_fractal	ft_create_mandelbrot(void)
+static t_fractal	ft_new_mandelbrot(void)
 {
 	t_fractal	f;
 	f = (t_fractal)malloc(sizeof(t_fractal));
@@ -30,7 +30,7 @@ static t_fractal	ft_create_mandelbrot(void)
 	return (f);
 }
 
-static t_fractal	ft_create_bship(void)
+static t_fractal	ft_new_bship(void)
 {
 	t_fractal	f;
 	f = (t_fractal)malloc(sizeof(t_fractal));
@@ -39,11 +39,11 @@ static t_fractal	ft_create_bship(void)
 	return (f);
 }
 
-t_fractal		ft_create_fractal(t_app *a, char *name)
+void				ft_new_fractal(t_app *a, char *name)
 {
-	a->tab_f[0] = ft_create_julia();
-	a->tab_f[1] = ft_create_mandelbrot();
-	a->tab_f[2] = ft_create_bship();
+	a->tab_f[0] = ft_new_julia();
+	a->tab_f[1] = ft_new_mandelbrot();
+	a->tab_f[2] = ft_new_bship();
 	if (!(ft_strcmp(name, "julia")))
 		a->f = a->tab_f[0];
 	if (!(ft_strcmp(name, "mandelbrot")))

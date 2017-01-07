@@ -6,13 +6,13 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:53:04 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 15:05:57 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 17:12:22 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		ft_init_color(t_cscheme	*cs)
+static void		ft_init_colorscheme(t_cscheme *cs)
 {
 	cs->freq[0] = 0.030;
 	cs->freq[1] = 0.005;
@@ -28,12 +28,21 @@ void		ft_init_color(t_cscheme	*cs)
 	cs->center[2] = 55;
 }
 
-int			ft_get_color(double c_index, t_cscheme *cs)
+int				ft_get_color(double c_index, t_cscheme *cs)
 {
 	t_color		c;
 
-	c.channels[0] = (unsigned char)(sin(cs->freq[0] * c_index + cs->phase[0]) * cs->amp[0] + cs->center[0]);
-	c.channels[1] = (unsigned char)(sin(cs->freq[1] * c_index + cs->phase[1]) * cs->amp[1] + cs->center[1]);
-	c.channels[2] = (unsigned char)(sin(cs->freq[2] * c_index + cs->phase[2]) * cs->amp[2] + cs->center[2]);
+	c.channels[0] = (unsigned char)(sin(cs->freq[0] * c_index + cs->phase[0])
+		* cs->amp[0] + cs->center[0]);
+	c.channels[1] = (unsigned char)(sin(cs->freq[1] * c_index + cs->phase[1])
+		* cs->amp[1] + cs->center[1]);
+	c.channels[2] = (unsigned char)(sin(cs->freq[2] * c_index + cs->phase[2])
+		* cs->amp[2] + cs->center[2]);
 	return (c.number);
+}
+
+void		ft_new_colorscheme(t_app *a, char *name)
+{
+	a->f->cs = (t_cscheme *)malloc(sizeof(t_cscheme));
+	ft_init_colorscheme(a->f->cs);
 }
