@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 17:23:27 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/07 19:37:19 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct		s_app
 	int				size_line;
 	int				endian;
 	t_fractal		*f;
-	t_fractal		tab_f[3];
+	t_fractal		*tab_f;
 }					t_app;
 
 typedef struct		s_thread_data
@@ -95,7 +95,7 @@ typedef struct		s_thread_data
 
 t_app				*ft_new_window(int width, int height, char *title);
 char				*ft_get_user_input(char *argv);
-void				*ft_compute_fractal(char *name_fractal);
+void				*ft_compute_fractal(t_app *app, char *name);
 void				ft_draw_fractal(t_app *app);
 int					ft_get_color(double c_index, t_cscheme *cs);
 int					ft_key_hook(int keycode, t_app *app);
@@ -103,5 +103,5 @@ int					ft_motion_hook(int x, int y, t_app *app);
 int					ft_mouse_hook(int button, int x, int y, t_app *app);
 void				ft_new_fractal(t_app *a, char *name);
 void				ft_init_fractal(t_app *a);
-void				ft_new_colorscheme(t_app *a, char *name);
+void				ft_new_colorscheme(t_app *a);
 #endif
