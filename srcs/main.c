@@ -6,33 +6,34 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:09:17 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 17:21:05 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 18:45:39 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int		ft_expose_hook(t_app *app)
+static int	ft_expose_hook(t_app *a)
 {
-	ft_draw_fractal(app);
+	ft_draw_fractal(a);
 	return (FALSE);
 }
 
-int		main(int argc, char *argv[])
+int			main(int argc, char *argv[])
 {
-	t_app	*app;
-	char	*name;
+	t_app	*a;
 
-	if (!(argc == 2 && (name = ft_get_user_input(argv[1]))))
+	if (!(argc == 2 && ft_get_user_input(argv[1])))
 		ft_exit_error_str("Usage: ./fractol julia || mandelbrot || bship");
-	if (!(app = ft_new_window(WIN_W, WIN_H, "Fractol")))
+	if (!(a = ft_new_window(WIN_W, WIN_H, "Fractol")))
 		ft_exit_error();
-	ft_new_fractal(app, name);
-	ft_init_fractal(app);
-	mlx_hook(app->win, MOTION_NOTIFY, PTR_MOTION_MASK, ft_motion_hook, app);
-	mlx_key_hook(app->win, ft_key_hook, app);
-	mlx_mouse_hook(app->win, ft_mouse_hook, app);
-	mlx_expose_hook(app->win, ft_expose_hook, app);
-	mlx_loop(app->mlx);
+	a->name_fractal = argv[1];
+	ft_new_fractal_tab(a);
+	ft_new_cscheme_tab(a);
+	ft_select_fractal(a);
+	mlx_hook(a->win, MOTION_NOTIFY, PTR_MOTION_MASK, ft_motion_hook, a);
+	mlx_key_hook(a->win, ft_key_hook, a);
+	mlx_mouse_hook(a->win, ft_mouse_hook, a);
+	mlx_expose_hook(a->win, ft_expose_hook, a);
+	mlx_loop(a->mlx);
 	return (FALSE);
 }

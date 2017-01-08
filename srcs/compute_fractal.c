@@ -6,13 +6,13 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:50:29 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 17:23:56 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 19:38:12 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int		ft_compute_julia(t_fractal *f, t_point *p)
+int		ft_compute_julia(t_fractal *f, t_cscheme *cs, t_point *p)
 {
 	int		i;
 
@@ -29,17 +29,17 @@ static int		ft_compute_julia(t_fractal *f, t_point *p)
 			break;
 	}
 	if (i < f->i_max)
-		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
-	return (0xffffff);
+		return (ft_get_color(i + 1 - (log(2) / sqrt(f->new.r * f->new.r +
+			f->new.i * f->new.i)) / log(2), cs));
+	return (0x000000);
 }
 
-static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
+int		ft_compute_mandelbrot(t_fractal *f, t_cscheme *cs, t_point *p)
 {
 	int		i;
 
-	f->z.r = 1.5 * (p->x - WIN_W / 2) / (0.5 * f->zoom * WIN_W) - f->move.x;
-	f->z.i = (p->y - WIN_H / 2) / (0.5 * f->zoom * WIN_H) + f->move.y;
+	f->c.r = 1.5 * (p->x - WIN_W / 2) / (0.5 * f->zoom * WIN_W) - f->move.x;
+	f->c.i = (p->y - WIN_H / 2) / (0.5 * f->zoom * WIN_H) + f->move.y;
 	f->new.r = 0;
 	f->new.i = 0;
 	f->old.r = 0;
@@ -49,18 +49,18 @@ static int		ft_compute_mandelbrot(t_fractal *f, t_point *p)
 	{
 		f->old.r = f->new.r;
 		f->old.i = f->new.i;
-		f->new.r = f->old.r * f->old.r - f->old.i * f->old.i + f->z.r;
-		f->new.i = 2 * f->old.r * f->old.i + f->z.i;
+		f->new.r = f->old.r * f->old.r - f->old.i * f->old.i + f->c.r;
+		f->new.i = 2 * f->old.r * f->old.i + f->c.i;
 		if ((f->new.r * f->new.r + f->new.i * f->new.i) > 4)
 			break;
 	}
 	if (i < f->i_max)
-		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
-	return (FALSE);
+		return (ft_get_color(i + 1 - (log(2) / sqrt(f->new.r * f->new.r +
+			f->new.i * f->new.i)) / log(2), cs));
+	return (0x000000);
 }
 
-static int		ft_compute_bship(t_fractal *f, t_point *p)
+int		ft_compute_bship(t_fractal *f, t_cscheme *cs, t_point *p)
 {
 	int		i;
 
@@ -81,20 +81,7 @@ static int		ft_compute_bship(t_fractal *f, t_point *p)
 			break ;
 	}
 	if (i < f->i_max)
-		return (ft_get_color(i + 1 - (log(2) /
-			sqrt(f->new.r * f->new.r + f->new.i * f->new.i)) / log(2), f->cs));
-	return (FALSE);
-}
-
-void			*ft_compute_fractal(t_app *app, char *name)
-{
-	void	*f;
-
-	if (!(ft_strcmp(name, "julia")))
-		f = &ft_compute_julia;
-	if (!(ft_strcmp(name, "mandelbrot")))
-		f = &ft_compute_mandelbrot;
-	if (!(ft_strcmp(name, "bship")))
-		f = &ft_compute_bship;
-	return (f);
+		return (ft_get_color(i + 1 - (log(2) / sqrt(f->new.r * f->new.r +
+			f->new.i * f->new.i)) / log(2), cs));
+	return (0x000000);
 }

@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/08 15:43:31 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 19:19:03 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,18 @@
 
 typedef struct		s_cscheme
 {
-	double			freq[3];
-	int				phase[3];
-	int				amp[3];
-	int				center[3];
+	double			freq1;
+	double			freq2;
+	double			freq3;
+	int				phase1;
+	int				phase2;
+	int				phase3;
+	int				amp1;
+	int				amp2;
+	int				amp3;
+	int				center1;
+	int				center2;
+	int				center3;
 }					t_cscheme;
 
 typedef union		u_color
@@ -59,20 +67,17 @@ typedef struct		s_fractal
 {
 	void			*fun;
 	t_complex		c;
-	t_complex		z;
 	t_complex		new;
 	t_complex		old;
-	t_point			p;
 	t_point			move;
 	double			zoom;
 	int				i_max;
 	char			stop_motion;
-	char			*name;
-	t_cscheme		*cs;
 }					t_fractal;
 
 typedef struct		s_app
 {
+	char			*name_fractal;
 	void			*mlx;
 	void			*win;
 	void			*img_ptr;
@@ -82,24 +87,31 @@ typedef struct		s_app
 	int				endian;
 	t_fractal		*f;
 	t_fractal		*tab_f;
+	t_cscheme		*cs;
+	t_cscheme		*tab_cs;
 }					t_app;
 
 typedef struct		s_thread_data
 {
 	t_app			*app;
 	t_fractal		*f;
+	t_cscheme		*cs;
 	int				i;
 }					t_thread_data;
 
 t_app				*ft_new_window(int width, int height, char *title);
 char				*ft_get_user_input(char *argv);
-void				*ft_compute_fractal(t_app *app, char *name);
+void				*ft_compute_fractal(char *name);
 void				ft_draw_fractal(t_app *app);
 int					ft_get_color(double c_index, t_cscheme *cs);
 int					ft_key_hook(int keycode, t_app *app);
 int					ft_motion_hook(int x, int y, t_app *app);
 int					ft_mouse_hook(int button, int x, int y, t_app *app);
-void				ft_new_fractal(t_app *a, char *name);
-void				ft_init_fractal(t_app *a);
-void				ft_new_colorscheme(t_app *a);
+void				ft_new_fractal_tab(t_app *a);
+void				ft_init_fractal_tab(t_fractal *t);
+void				ft_select_fractal(t_app *a);
+int					ft_compute_julia(t_fractal *f, t_cscheme *cs, t_point *p);
+int					ft_compute_mandelbrot(t_fractal *f, t_cscheme *cs, t_point *p);
+int					ft_compute_bship(t_fractal *f, t_cscheme *cs, t_point *p);
+void				ft_new_cscheme_tab(t_app *a);
 #endif

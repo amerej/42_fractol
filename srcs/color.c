@@ -6,47 +6,34 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:53:04 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/08 15:26:17 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 19:36:20 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		ft_init_colorscheme(t_cscheme *cs)
+static void		ft_init_cscheme_tab(t_cscheme *t)
 {
-	cs->freq[0] = 0.030;
-	cs->freq[1] = 0.005;
-	cs->freq[2] = 0.000;
-	cs->amp[0] = 127;
-	cs->amp[1] = 200;
-	cs->amp[2] = 200;
-	cs->phase[0] = 6;
-	cs->phase[1] = 6;
-	cs->phase[2] = 6;
-	cs->center[0] = 55;
-	cs->center[1] = 55;
-	cs->center[2] = 55;
+	t[0] = (t_cscheme){0.03, 0.005, 0.00, 6, 6, 6, 127, 200, 200, 55, 55, 55};
+	t[1] = (t_cscheme){0.34, 0.185, 0.15, 6, 6, 6, 197, 210, 210, 55, 55, 55};
+	t[2] = (t_cscheme){0.31, 0.155, 0.21, 14, 7, 10, 197, 180, 230, 55, 75, 80};
 }
 
 int				ft_get_color(double c_index, t_cscheme *cs)
 {
 	t_color		c;
-
-	c.channels[0] = (unsigned char)(sin(cs->freq[0] * c_index + cs->phase[0])
-		* cs->amp[0] + cs->center[0]);
-	c.channels[1] = (unsigned char)(sin(cs->freq[1] * c_index + cs->phase[1])
-		* cs->amp[1] + cs->center[1]);
-	c.channels[2] = (unsigned char)(sin(cs->freq[2] * c_index + cs->phase[2])
-		* cs->amp[2] + cs->center[2]);
+	c.channels[0] = (unsigned char)(sin(cs->freq1 * c_index + cs->phase1)
+		* cs->amp1 + cs->center1);
+	c.channels[1] = (unsigned char)(sin(cs->freq2 * c_index + cs->phase2)
+		* cs->amp2 + cs->center2);
+	c.channels[2] = (unsigned char)(sin(cs->freq3 * c_index + cs->phase3)
+		* cs->amp3 + cs->center3);
 	return (c.number);
 }
 
-void			ft_new_colorscheme(t_app *a)
+void			ft_new_cscheme_tab(t_app *a)
 {
-	a->tab_f[0].cs = (t_cscheme *)malloc(sizeof(t_cscheme));
-	a->tab_f[1].cs = (t_cscheme *)malloc(sizeof(t_cscheme));
-	a->tab_f[2].cs = (t_cscheme *)malloc(sizeof(t_cscheme));
-	ft_init_colorscheme(a->tab_f[0].cs);
-	ft_init_colorscheme(a->tab_f[1].cs);
-	ft_init_colorscheme(a->tab_f[2].cs);
+	a->tab_cs = (t_cscheme *)malloc(sizeof(t_cscheme) * 3);
+	ft_init_cscheme_tab(a->tab_cs);
+	a->cs = &a->tab_cs[0];
 }

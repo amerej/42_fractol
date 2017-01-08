@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/07 19:05:46 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 19:05:53 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		ft_put_pixel_img(t_app *a, t_point *p, int color)
 static void		ft_draw_img(t_thread_data *thread)
 {
 	t_point		p;
-	int 		(*fun)(t_fractal*, t_point*);
+	int 		(*fun)(t_fractal*, t_cscheme*, t_point*);
 	fun = thread->f->fun;
 
 	p.y = WIN_H / NB_THREAD * (thread->i);
@@ -34,12 +34,13 @@ static void		ft_draw_img(t_thread_data *thread)
 		p.x = 0;
 		while (p.x < WIN_W)
 		{
-			ft_put_pixel_img(thread->app, &p, (fun)(thread->f, &p));
+			ft_put_pixel_img(thread->app, &p, (fun)(thread->f, thread->cs, &p));
 			++p.x;
 		}
 		++p.y;
 	}
 	free(thread->f);
+	free(thread->cs);
 	free(thread);
 }
 
@@ -56,17 +57,16 @@ static void		ft_multi_thread_draw(t_app *app)
 		thread->i = i;
 		thread->app = app;
 		thread->f = (t_fractal *)malloc(sizeof(t_fractal));
+		thread->cs = (t_cscheme *)malloc(sizeof(t_cscheme));
 		ft_memcpy(thread->f, app->f, sizeof(t_fractal));
+		ft_memcpy(thread->cs, app->cs, sizeof(t_cscheme));
 		pthread_create(&thread_draw[thread->i], NULL,
 			(void *)ft_draw_img, thread);
 		++i;
 	}
-	i = 0;
-	while (i < NB_THREAD)
-	{
+	i = -1;
+	while (++i < NB_THREAD)
 		pthread_join(thread_draw[i], NULL);
-		++i;
-	}
 }
 
 void			ft_draw_fractal(t_app *a)
