@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:53:04 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 19:41:48 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 15:26:17 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				ft_get_color(double c_index, t_cscheme *cs)
 	return (c.number);
 }
 
-void		ft_new_colorscheme(t_app *a)
+void			ft_new_colorscheme(t_app *a)
 {
 	a->tab_f[0].cs = (t_cscheme *)malloc(sizeof(t_cscheme));
 	a->tab_f[1].cs = (t_cscheme *)malloc(sizeof(t_cscheme));

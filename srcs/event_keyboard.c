@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:05:19 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 19:38:38 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 15:34:47 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ static void		ft_mod_iter(int key, t_app *a)
 static void		ft_change_f(int key, t_app *a)
 {
 	if (key == KEY_KP_1)
+		a->f = &a->tab_f[0];
+	if (key == KEY_KP_2)
 		a->f = &a->tab_f[1];
+	if (key == KEY_KP_3)
+		a->f = &a->tab_f[2];
 }
 
 int		ft_key_hook(int key, t_app *a)

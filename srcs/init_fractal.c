@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:49:06 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 19:38:55 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 15:39:34 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void		ft_init_mandelbrot(t_fractal *f)
 
 static void		ft_init_bship(t_fractal *f)
 {
+	f->c.r = -0.7;
+	f->c.i = 0.27015;
 	f->move.x = 0.5;
 	f->move.y = -0.5;
 	f->zoom = 1;

@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/07 19:37:19 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/08 15:43:31 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ typedef struct		s_fractal
 	t_point			move;
 	double			zoom;
 	int				i_max;
-	int				w;
-	int				h;
 	char			stop_motion;
 	char			*name;
 	t_cscheme		*cs;
