@@ -6,34 +6,11 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 11:05:19 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/08 19:35:22 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/09 12:19:30 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-static	void	ft_scale(int key, t_app *a)
-{
-	int		h_w;
-	int		h_h;
-	double	zr;
-
-	h_w = WIN_W / 2;
-	h_h = WIN_H / 2;
-	zr = a->f->zoom * 10;
-	if (key == KEY_KP_PLUS)
-	{
-		a->f->zoom *= 1.1;
-		a->f->move.x += (h_h / h_w) / zr;
-		a->f->move.y += (h_w / h_h) / zr;
-	}
-	else if (key == KEY_KP_MINUS)
-	{
-		a->f->zoom /= 1.1;
-		a->f->move.x += (h_h / h_w) / zr;
-		a->f->move.y += (h_w / h_h) / zr;
-	}
-}
 
 static	void	ft_translate(int key, t_app *a)
 {
@@ -72,23 +49,14 @@ static void		ft_change_fractal(int key, t_app *a)
 		a->f = &a->tab_f[1];
 	if (key == KEY_KP_3)
 		a->f = &a->tab_f[2];
+	if (key == KEY_KP_4)
+		a->f = &a->tab_f[3];
+	if (key == KEY_KP_5)
+		a->f = &a->tab_f[4];
 }
 
-static void		ft_change_color(int key, t_app *a)
+int				ft_key_hook(int key, t_app *a)
 {
-	if (key == KEY_1)
-		a->cs = &a->tab_cs[0];
-	if (key == KEY_2)
-		a->cs = &a->tab_cs[1];
-	if (key == KEY_3)
-		a->cs = &a->tab_cs[2];
-}
-
-int		ft_key_hook(int key, t_app *a)
-{
-	int	i;
-
-	i = 0;
 	if (key == KEY_ESC)
 	{
 		mlx_destroy_window(a->mlx, a->win);
@@ -100,7 +68,6 @@ int		ft_key_hook(int key, t_app *a)
 	if (key == KEY_SPACE)
 		a->f->stop_motion = a->f->stop_motion ? FALSE : TRUE;
 	ft_translate(key, a);
-	ft_scale(key, a);
 	ft_reset(key, a);
 	ft_mod_iter(key, a);
 	ft_change_fractal(key, a);

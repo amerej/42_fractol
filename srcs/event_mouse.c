@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:49:58 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/08 19:31:22 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/09 12:22:32 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void		ft_scale_mouse(int button, int x, int y, t_app *a)
 {
-	if ((button == 1 || button == 4) && x >= 0 && y >= 0 && x <= WIN_W && y <= WIN_H)
+	if ((button == 1 || button == 4) &&
+		x >= 0 && y >= 0 && x <= WIN_W && y <= WIN_H)
 	{
 		a->f->move.x += 0.002 * (WIN_W / 2 - x) / a->f->zoom;
 		a->f->move.y -= 0.002 * (WIN_H / 2 - y) / a->f->zoom;

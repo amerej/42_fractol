@@ -6,7 +6,7 @@
 /*   By: amerej <amerej@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 07:44:49 by amerej            #+#    #+#             */
-/*   Updated: 2017/01/08 19:05:53 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/09 12:21:28 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void		ft_put_pixel_img(t_app *a, t_point *p, int color)
 static void		ft_draw_img(t_thread_data *thread)
 {
 	t_point		p;
-	int 		(*fun)(t_fractal*, t_cscheme*, t_point*);
-	fun = thread->f->fun;
+	int			(*fun)(t_fractal*, t_cscheme*, t_point*);
 
+	fun = thread->f->fun;
 	p.y = WIN_H / NB_THREAD * (thread->i);
 	while (p.y < WIN_H / NB_THREAD * (thread->i + 1))
 	{

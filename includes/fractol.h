@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 10:10:36 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/08 19:19:03 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/09 12:24:40 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ void				ft_new_fractal_tab(t_app *a);
 void				ft_init_fractal_tab(t_fractal *t);
 void				ft_select_fractal(t_app *a);
 int					ft_compute_julia(t_fractal *f, t_cscheme *cs, t_point *p);
-int					ft_compute_mandelbrot(t_fractal *f, t_cscheme *cs, t_point *p);
+int					ft_compute_mandelbrot(t_fractal *f, t_cscheme *cs,
+						t_point *p);
 int					ft_compute_bship(t_fractal *f, t_cscheme *cs, t_point *p);
+int					ft_compute_web(t_fractal *f, t_cscheme *cs, t_point *p);
 void				ft_new_cscheme_tab(t_app *a);
+void				ft_change_color(int key, t_app *a);
 #endif
