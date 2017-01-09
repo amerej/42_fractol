@@ -32,6 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C ./libft
+	make -C ./minilibx/osx
 	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
@@ -42,9 +43,11 @@ clean:
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
 	make -C ./libft clean
+	make -C ./minilibx/osx clean
 
 fclean: clean
 	rm -fv $(NAME)
 	make -C ./libft fclean
+	make -C ./minilibx/osx clean
 
 re:	fclean all
