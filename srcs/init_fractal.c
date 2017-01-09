@@ -6,7 +6,7 @@
 /*   By: aditsch <aditsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 12:49:06 by aditsch           #+#    #+#             */
-/*   Updated: 2017/01/09 12:15:39 by aditsch          ###   ########.fr       */
+/*   Updated: 2017/01/09 13:36:58 by aditsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_init_fractal_tab(t_fractal *t)
 	t[3] = (t_fractal){ft_compute_web, {0.5, -0.5},
 		{0, 0}, {0, 0}, {0.5, -0.5}, 1, I_MAX, TRUE};
 	t[4] = (t_fractal){ft_compute_julia, {0.285, 0.01},
-		{0, 0}, {0, 0}, {0, 0}, 1, I_MAX, TRUE};
+		{0, 0}, {0, 0}, {0, 0}, 0.8, I_MAX, TRUE};
 }
 
 void	ft_new_fractal_tab(t_app *a)
