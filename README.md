@@ -3,9 +3,7 @@
 
 Fractals drawn using multi-threading
 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](http://hpics.li/2fe748a)
-
+![fractol](http://www.hostingpics.net/viewer.php?id=349772ScreenShot20170109at12036PM.png)
 Change colour with key[1-3]  
 Change fractal with keypad[1-3]  
 Zoom with mouse SCROLL WHEEL  
