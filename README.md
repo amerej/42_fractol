@@ -4,8 +4,8 @@
 Fractals drawn using multi-threading
 
 ![fractol](http://img11.hostingpics.net/pics/349772ScreenShot20170109at12036PM.png)  
-Change colour with key[1-3]  
-Change fractal with keypad[1-3]  
+Change colour with key[1-5]  
+Change fractal with keypad[1-5]  
 Zoom with mouse SCROLL WHEEL  
 Reset fractal with keypad DOT  
 Change number of iterations with PAGE UP / PAGE DOWN  
